@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ADD8E6;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%; /* Sayfanın yüksekliğini %100 yap */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Merkeze yatay hizalama */
+    align-items: center; /* Merkeze dikey hizalama */
+    min-height: 100%; /* Minumum yükseklik */
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    padding: 20px;
+}
+
+.forecast {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 20px;
+}
+
+.forecast h2 {
+    margin-top: 0;
+}

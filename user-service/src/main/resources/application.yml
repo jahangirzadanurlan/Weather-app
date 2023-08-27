@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    include:
+      - db
+      - server
+      - security
+      - email

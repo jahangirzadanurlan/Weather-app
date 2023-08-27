@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hava Durumu</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stil.css}">
+    <style>
+        body.sunny {
+            background-image: url('https://cdn.pixabay.com/photo/2019/02/24/15/30/beach-4017838_640.jpg');
+        }
+        body.rainy {
+            background-image: url('https://mcdn.wallpapersafari.com/medium/80/79/6JmCqO.jpg');
+        }
+
+        .forecast {
+            position: relative;
+        }
+
+        .right-side {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #dynamic-image {
+            width: 55px;
+            height: auto;
+        }
+    </style>
+    <script>
+        function setDynamicBackground(weatherType, temperature) {
+            var imgElement = document.getElementById("dynamic-image");
+            if (temperature < 0) {
+                imgElement.src = "https://emojiisland.com/cdn/shop/products/9_large.png?v=1571606116";
+            }else if (temperature < 10) {
+                imgElement.src = "https://png.pngtree.com/png-clipart/20230816/original/pngtree-blue-sick-emoji-with-red-hat-and-yellow-scarf-vector-illustration-on-a-white-background-picture-image_7983219.png";
+            }
+            else if (temperature > 25) {
+                imgElement.src = "https://whatemoji.org/wp-content/uploads/2020/07/Hot-Face-Emoji-1024x1024.png";
+            } else {
+                imgElement.src = "https://images.emojiterra.com/twitter/v14.0/512px/1f642.png";
+            }
+        }
+        </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Weather Forecast 🌦️</h1>
+    </header>
+
+    <main>
+        <div class="forecast">
+            <h2>Current Conditions 🌡️</h2>
+            <p>Location: <span th:text="${weather.city}"></span>, <span th:text="${weather.country}"></span></p>
+            <p>Weather: <span th:text="${weather.weatherType}">☀️</span></p>
+            <p>Description: <span th:text="${weather.weatherTypeDescription}"></span></p>
+            <p>Temperature: <span th:text="${weather.temperature}"></span> °C <span th:if="${weather.temperature < 5}">❄️</span> <span th:if="${weather.temperature > 25}">🌞</span></p>
+            <p>Feels Like: <span th:text="${weather.feelsTemp}"></span> °C</p>
+            <p>Lowest Temperature: <span th:text="${weather.minTemp}"></span> °C</p>
+            <p>Highest Temperature: <span th:text="${weather.maxTemp}"></span> °C</p>
+            <p>Pressure: <span th:text="${weather.pressure}"></span> hPa</p>
+            <p>Humidity: <span th:text="${weather.humidity}"></span> % 💧</p>
+            <p>Wind Speed: <span th:text="${weather.windSpeed}"></span> m/s 🌬️</p>
+            <p>Visibility: <span th:text="${weather.visibility}"></span> <span th:if="${weather.visibility == 'High'}">👓</span> <span th:if="${weather.visibility == 'Low'}">🌫️</span></p>
+            <p>Sunrise: <span th:text="${weather.sunrise}"></span> 🌅</p>
+            <p>Sunset: <span th:text="${weather.sunset}"></span> 🌇</p>
+
+            <div class="right-side">
+                <img id="dynamic-image" src="" alt="Weather-specific outfit" />
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Nurlan Jahangirzada ☕</p>
+    </footer>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var weatherType = [[${weather.weatherType}]];
+    var temperature = [[${weather.temperature}]];
+    setDynamicBackground(weatherType, temperature);
+    /*]]>*/
+    </script>
+</body>
+</html>
