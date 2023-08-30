@@ -3,9 +3,13 @@ package com.example.notificationservice.service.impl;
 import com.example.notificationservice.model.dto.request.SubscribeRequestDto;
 import com.example.notificationservice.model.dto.request.UserRegisterEmailRequestDto;
 import com.example.notificationservice.model.dto.response.WeatherResponseDto;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,7 +22,8 @@ import javax.mail.internet.MimeMessage;
 public class MailSenderService {
     private final JavaMailSender javaMailSender;
 
-    public void sendMail(UserRegisterEmailRequestDto request) {
+    @Retry(name = "sendNotification",fallbackMethod = "fallbackForSendNotification")
+    public ResponseEntity<String> sendMail(UserRegisterEmailRequestDto request) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
 
@@ -35,9 +40,18 @@ public class MailSenderService {
 
             javaMailSender.send(message);
             log.info("Email sent: " + request.getEmail());
+
+            return new ResponseEntity<>("Email sent successfully.", HttpStatus.OK);
         } catch (Exception e) {
-            // Handle exception
+            log.error("An error occurred while sending the email: {}", e.getMessage());
+            throw new RuntimeException("Email could not be sent");
         }
+    }
+
+    public ResponseEntity<String> fallbackForSendNotification(UserRegisterEmailRequestDto request,Throwable t){
+        log.error("Error occurred while sending email for -> {}", request.getEmail(), t);
+
+        return new ResponseEntity<>("The server is busy. Please try again later.",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     public void sendWeatherMail(String email, WeatherResponseDto weather) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hava Durumu</title>
+    <title th:text="#{app.title}">Hava Durumu</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/stil.css}">
     <style>
         body.sunny {
@@ -45,25 +45,25 @@
 <body>
 <div class="container">
     <header>
-        <h1>Weather Forecast 🌦️</h1>
+        <h1 th:text="#{app.header}">Weather Forecast 🌦️</h1>
     </header>
 
     <main>
         <div class="forecast">
-            <h2>Current Conditions 🌡️</h2>
-            <p>Location: <span th:text="${weather.city}"></span>, <span th:text="${weather.country}"></span></p>
-            <p>Weather: <span th:text="${weather.weatherType}">☀️</span></p>
-            <p>Description: <span th:text="${weather.weatherTypeDescription}"></span></p>
-            <p>Temperature: <span th:text="${weather.temperature}"></span> °C <span th:if="${weather.temperature < 5}">❄️</span> <span th:if="${weather.temperature > 25}">🌞</span></p>
-            <p>Feels Like: <span th:text="${weather.feelsTemp}"></span> °C</p>
-            <p>Lowest Temperature: <span th:text="${weather.minTemp}"></span> °C</p>
-            <p>Highest Temperature: <span th:text="${weather.maxTemp}"></span> °C</p>
-            <p>Pressure: <span th:text="${weather.pressure}"></span> hPa</p>
-            <p>Humidity: <span th:text="${weather.humidity}"></span> % 💧</p>
-            <p>Wind Speed: <span th:text="${weather.windSpeed}"></span> m/s 🌬️</p>
-            <p>Visibility: <span th:text="${weather.visibility}"></span> <span th:if="${weather.visibility == 'High'}">👓</span> <span th:if="${weather.visibility == 'Low'}">🌫️</span></p>
-            <p>Sunrise: <span th:text="${weather.sunrise}"></span> 🌅</p>
-            <p>Sunset: <span th:text="${weather.sunset}"></span> 🌇</p>
+            <h2><span th:text="#{current.conditions}"></span> 🌡️</h2>
+            <p><span th:text="#{location}"></span>: <span th:text="${weather.city}"></span>, <span th:text="${weather.country}"></span></p>
+            <p><span th:text="#{weather}"></span>: <span th:text="${weather.weatherType}">☀️</span></p>
+            <p><span th:text="#{description}"></span>: <span th:text="${weather.weatherTypeDescription}"></span></p>
+            <p><span th:text="#{temperature}"></span>: <span th:text="${weather.temperature}"></span> °C <span th:if="${weather.temperature < 5}">❄️</span> <span th:if="${weather.temperature > 25}">🌞</span></p>
+            <p><span th:text="#{feels.like}"></span>: <span th:text="${weather.feelsTemp}"></span> °C</p>
+            <p><span th:text="#{lowest.temperature}"></span>: <span th:text="${weather.minTemp}"></span> °C</p>
+            <p><span th:text="#{highest.temperature}"></span>: <span th:text="${weather.maxTemp}"></span> °C</p>
+            <p><span th:text="#{pressure}"></span>: <span th:text="${weather.pressure}"></span> hPa</p>
+            <p><span th:text="#{humidity}"></span>: <span th:text="${weather.humidity}"></span> % 💧</p>
+            <p><span th:text="#{wind.speed}"></span>: <span th:text="${weather.windSpeed}"></span> m/s 🌬️</p>
+            <p><span th:text="#{visibility}"></span>: <span th:text="${weather.visibility}"></span> <span th:if="${weather.visibility == 'High'}">👓</span> <span th:if="${weather.visibility == 'Low'}">🌫️</span></p>
+            <p><span th:text="#{sunrise}"></span>: <span th:text="${weather.sunrise}"></span> 🌅</p>
+            <p><span th:text="#{sunset}"></span>: <span th:text="${weather.sunset}"></span> 🌇</p>
 
             <div class="right-side">
                 <img id="dynamic-image" src="" alt="Weather-specific outfit" />

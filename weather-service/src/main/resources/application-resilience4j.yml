@@ -1,0 +1,11 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      getWeather:
+        sliding-window-type: count_based
+        failure-rate-threshold: 50.0
+        sliding-window-size: 6
+        wait-duration-in-open-state: 10s
+        automatic-transition-from-open-to-half-open-enabled: true
+        permitted-number-of-calls-in-half-open-state: 2
+        max-wait-duration-in-half-open-state: 15000

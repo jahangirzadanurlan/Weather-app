@@ -5,3 +5,4 @@ spring:
       - server
       - db
       - rabbitMq
+      - resilience4j
