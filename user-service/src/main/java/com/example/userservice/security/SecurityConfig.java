@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/auth/**").permitAll()
+                                .antMatchers("/auth/**", "/oauth2/**").permitAll()
                                 .antMatchers("/app/**").permitAll()
                                 .antMatchers("/swagger-ui/**").permitAll()
                                 .antMatchers(HttpMethod.POST,"/auth" ).permitAll()
@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         sessionManagement
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+                .oauth2Login()
+                .defaultSuccessUrl("/oauth2/success", true)
+                .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
@@ -47,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler((request, response, authentication) -> {
                     SecurityContextHolder.clearContext();
                     response.setStatus(HttpStatus.OK.value());
-                });
+                })
+        ;
     }
 }

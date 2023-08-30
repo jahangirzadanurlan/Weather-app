@@ -1,10 +1,11 @@
 package com.example.notificationservice.service.impl;
 
+import com.example.notificationservice.model.dto.request.SubscribeRequestDto;
 import com.example.notificationservice.model.dto.request.UserRegisterEmailRequestDto;
 import com.example.notificationservice.model.dto.response.WeatherResponseDto;
-import com.example.notificationservice.model.entity.Weather;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,33 @@ public class MailSenderService {
             javaMailSender.send(message);
             log.info("Email sent: " + email);
         } catch (Exception e) {
-            // Handle exception
+            e.printStackTrace();
+        }
+    }
+
+    @RabbitListener(queues = "thirdStepQueue")
+    public void sendSubscriptionMail(SubscribeRequestDto subscribeRequestDto) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
+
+        try {
+            helper.setTo(subscribeRequestDto.getEmail());
+            helper.setSubject("🎉 Subscription Successful! 🎉");
+
+            String emailContent = "<html><body>"
+                    + "<h1>🎉 Subscription Successful! 🎉</h1>"
+                    + "<p>Hello " + subscribeRequestDto.getEmail() + " 👋,</p>"
+                    + "<p>Your subscription has been successfully completed. You will now receive daily weather updates for " + subscribeRequestDto.getCity() + " ☀️⛅🌧️🌦️</p>"
+                    + "<p>Your payment has been received, and your subscription period has started.</p>"
+                    + "<p>Thank you! 🙌</p>"
+                    + "</body></html>";
+
+            helper.setText(emailContent, true);
+
+            javaMailSender.send(message);
+            log.info("Email sent: " + subscribeRequestDto.getEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -10,8 +10,5 @@
         <module name="user-service.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="weather-service.test" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

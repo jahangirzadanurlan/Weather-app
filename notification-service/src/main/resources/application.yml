@@ -4,3 +4,4 @@ spring:
       - email
       - server
       - db
+      - rabbitMq

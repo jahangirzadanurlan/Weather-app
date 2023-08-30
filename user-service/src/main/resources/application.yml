@@ -5,3 +5,5 @@ spring:
       - server
       - security
       - email
+      - oauth2
+      - rabbitMq

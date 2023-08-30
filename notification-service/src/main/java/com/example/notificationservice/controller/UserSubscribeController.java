@@ -14,8 +14,9 @@ public class UserSubscribeController {
     private final SubscribeUserService subscribeUserService;
 
     @PostMapping("/subscription")
-    public ResponseEntity<String> subscription(@RequestBody SubscribeRequestDto request){
-        return ResponseEntity.ok().body(subscribeUserService.saveUser(request));
+    public ResponseEntity<String> subscription(@RequestBody SubscribeRequestDto subscribeRequestDto){
+        subscribeUserService.checkUser(subscribeRequestDto);
+        return ResponseEntity.ok().body("Your transaction has been successfully received!");
     }
 
 }

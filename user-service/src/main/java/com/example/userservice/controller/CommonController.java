@@ -1,23 +1,35 @@
 package com.example.userservice.controller;
 
+import com.example.userservice.service.WeatherServiceClient;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
-@RestController
-@RequestMapping("/app")
+import java.util.Map;
+
+@Controller
+@RequiredArgsConstructor
+@Slf4j
+@RequestMapping("/oauth2")
 public class CommonController {
 
-    @GetMapping("/info")
-    public RedirectView redirectToYouTubeChannel() {
-        String youtubeChannelUrl = "https://www.youtube.com/watch?v=cjCgEdm3WF8";
-        return new RedirectView(youtubeChannelUrl);
-    }
+//    @GetMapping("/success")
+//    public String index(Model model, @AuthenticationPrincipal OAuth2User principal) {
+//        if (principal == null) {
+//            System.out.println("Principal is null");
+//            return "error";
+//        }
+//        model.addAttribute("username", principal.getAttribute("login"));
+//        return "home";
+//    }
 
-    @GetMapping("/admin")
-    public RedirectView redirectYouTubeChannel() {
-        String youtubeChannelUrl = "https://www.youtube.com/watch?v=AnwgxRtWXLI&list=PLhfrWIlLOoKMe1Ue0IdeULQvEgCgQ3a1Bhttps://www.youtube.com/watch?v=AnwgxRtWXLI&list=PLhfrWIlLOoKMe1Ue0IdeULQvEgCgQ3a1B";
-        return new RedirectView(youtubeChannelUrl);
+    @GetMapping("/success")
+    public String index() {
+        return "home";
     }
 }
