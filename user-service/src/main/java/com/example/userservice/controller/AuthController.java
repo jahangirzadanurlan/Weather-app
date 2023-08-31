@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -26,12 +27,12 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public AuthenticationResponse registration(@RequestBody RegistrationRequest request) {
+    public AuthenticationResponse registration(@RequestBody @Valid RegistrationRequest request) {
         return authService.registration(request);
     }
 
     @PostMapping
-    public AuthenticationResponse authentication(@RequestBody AuthenticationRequest request) {
+    public AuthenticationResponse authentication(@RequestBody @Valid AuthenticationRequest request) {
         return authService.authentication(request);
     }
 
