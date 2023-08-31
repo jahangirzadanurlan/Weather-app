@@ -6,10 +6,7 @@ Welcome to the Weather-App repository! This is a robust microservices-based weat
 
 - [Features](#features-)
 - [Technologies Used](#technologies-used-)
-- [How to Use](#how-to-use-)
-- [Getting Started](#getting-started-)
-- [Contributing](#contributing-)
-- [License](#license-)
+
 
 ---
 
