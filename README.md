@@ -1,20 +1,27 @@
-Weather-App :sunny: :cloud: :umbrella:
-Welcome to the Weather-App repository! This is a robust microservices-based weather application developed using Java, Spring Boot, and various other cutting-edge technologies. Your go-to destination for weather information tailored just for you! :rocket:
+Weather-App ☀️🌦️☔
+Welcome to the Weather-App repository! This is a robust microservices-based weather application developed using Java, Spring Boot, and various other cutting-edge technologies. Your go-to destination for weather information tailored just for you! 🚀
 
-Features :sparkles:
-1. Real-Time Weather Information :sun_behind_small_cloud:
+Table of Contents
+Features
+Technologies Used
+How to Use
+Getting Started
+Contributing
+License
+Features ✨
+Real-Time Weather Information ☀️🌥️
 Send a /weather?city={cityName} API request to fetch the current weather conditions for any city.
-The information is presented on a Thymeleaf page. Apologies for the humble design, I am more of a backend guy! :sweat_smile: But it gets the job done!
-2. Premium Subscription :moneybag: :e-mail:
-For just $100, become a monthly subscriber and receive daily weather updates via email for your desired city, sent every day at 12 AM. Never get caught unprepared again!
-3. Custom Alerts :bell: :thermometer:
+The information is presented on a Thymeleaf page. Apologies for the humble design— I'm more of a backend guy! 😅 But it gets the job done!
+Premium Subscription 💰📧
+For just $100, become a monthly subscriber and receive daily weather updates via email for your desired city. Updates are sent every day at 12 AM. Never get caught unprepared again!
+Custom Alerts 🔔🌡️
 Set up customized alerts for maximum and minimum temperature ranges for any city.
 Optionally, set the type of weather condition you're interested in (sunny, rainy, etc.).
 Receive instant email notifications when the conditions match your preset alerts!
-Technologies Used :hammer_and_wrench:
+Technologies Used 🔨🔧
 OAuth2 - Secure authentication.
 JWT - Authentication and registration.
-I18N - Multilingual support (Russian, Azerbaijani, English, and German).
+I18N - Multilingual support (Russian, Azerbaijani, English, German).
 Resilience4J - Resilient and fault-tolerant architecture.
 RabbitMQ - Message queue for operations like email notifications and subscription handling.
 Elasticsearch + Logstash + Kibana - For powerful search and visualization capabilities.
@@ -23,9 +30,6 @@ Eureka Service/API Gateway - Service discovery and routing.
 Feign Client - Simplifies HTTP API calls within the microservices.
 Validation - Robust validation mechanisms.
 JPA/PostgreSQL - Database management.
-
-
-
 
 
 
