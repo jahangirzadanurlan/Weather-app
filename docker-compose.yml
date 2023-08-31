@@ -2,14 +2,14 @@ version: '3'
 services:
 
   eureka-service:
-    build: ./path/to/eureka-service/Dockerfile
+    image: eureka-service
     ports:
       - "8761:8761"
     networks:
       - my_network
 
   api-gateway:
-    build: ./path/to/api-gateway/Dockerfile
+    image: api-gateway
     ports:
       - "8080:8080"
     depends_on:
@@ -18,7 +18,7 @@ services:
       - my_network
 
   weather-service:
-    build: ./path/to/weather-service/Dockerfile
+    image: weather-service
     ports:
       - "8083:8083"
     depends_on:
@@ -26,12 +26,12 @@ services:
       - database
       - rabbitmq
     environment:
-      DATABASE_URL: "jdbc:mysql://database:3306/product"
+      DATABASE_URL: "jdbc:postgresql://database:5432/product"
     networks:
       - my_network
 
   notification-service:
-    build: ./path/to/notification-service/Dockerfile
+    image: notification-service
     ports:
       - "8082:8082"
     depends_on:
@@ -39,12 +39,12 @@ services:
       - database
       - rabbitmq
     environment:
-      DATABASE_URL: "jdbc:mysql://database:3306/product"
+      DATABASE_URL: "jdbc:postgresql://database:5432/product"
     networks:
       - my_network
 
   user-service:
-    build: ./path/to/user-service/Dockerfile
+    image: user-service
     ports:
       - "8081:8081"
     depends_on:
