@@ -70,3 +70,6 @@ Welcome to the Weather-App repository! This is a robust microservices-based weat
 ### Screenshot 8
 ![Screenshot 2023-08-30 153200](https://github.com/jahangirzadanurlan/weather-app/assets/103985861/2c37bd06-44a5-45dd-bb59-dbac233036ee.png)
 
+### Screenshot 9
+![Screenshot 2023-08-30 153200](<img width="960" alt="Screenshot 2023-08-31 111216" src="https://github.com/jahangirzadanurlan/weather-app/assets/103985861/17899cde-b266-4142-bb34-cbc45336e77c">
+)
