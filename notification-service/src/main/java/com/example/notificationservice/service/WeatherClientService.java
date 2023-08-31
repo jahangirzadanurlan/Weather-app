@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
-@FeignClient(name = "weather-service",url = "http://localhost:8080/")
+@FeignClient(name = "weather-service",url = "http://localhost:8083/weather/")
 public interface WeatherClientService {
 
     @GetMapping("/weather-offer")

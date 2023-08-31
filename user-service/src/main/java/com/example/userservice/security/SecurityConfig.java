@@ -28,11 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/auth/**", "/oauth2/**").permitAll()
-                                .antMatchers("/app/**").permitAll()
-                                .antMatchers("/swagger-ui/**").permitAll()
-                                .antMatchers(HttpMethod.POST,"/auth" ).permitAll()
-                                .antMatchers("/products").hasRole(RoleType.USER.name())
+                                .antMatchers("/user/auth/**", "/oauth2/**").permitAll()
+                                .antMatchers(HttpMethod.POST,"/user/auth" ).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

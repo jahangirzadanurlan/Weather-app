@@ -169,14 +169,13 @@ public class AuthService implements IAuthService {
         //Since we will use the user in the token we will create, we get the user from the database
         Optional<User> _user = userRepository.findUserByUsernameOrEmail(request.getUsername());
 
-        Token token = Token.builder()
+        return Token.builder()
                 .token(accessToken)
                 .revoked(false)
                 .expired(false)
                 .user(_user.orElseThrow())
                 .createdAt(LocalDateTime.now())
                 .build();
-        return token;
     }
 
     public ResponseEntity<String> confirmAccount(UUID uuid){

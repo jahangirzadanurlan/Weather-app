@@ -32,7 +32,7 @@ public class WeatherRestController {
         return weatherOfferService.getWeatherDataForOffer(weatherOffer);
     }
 
-    @PostMapping("/weather")
+    @PostMapping
     public ResponseEntity<ResponseDto> saveWeatherOffer(@RequestBody WeatherOfferRequestDto weatherOfferRequestDto){
         ResponseDto response = weatherOfferService.saveWeatherOffer(weatherOfferRequestDto);
         return ResponseEntity.ok().body(response);

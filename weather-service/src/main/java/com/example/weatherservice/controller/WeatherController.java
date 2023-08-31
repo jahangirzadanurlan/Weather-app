@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class WeatherController {
     private final WeatherClientService weatherClientService;
 
-    @GetMapping("/weather")
+    @GetMapping
     @CircuitBreaker(name = "getWeather",fallbackMethod = "weatherFallBack")
     public String getWeatherData(@RequestParam(name = "city") String city, Model model) throws JsonProcessingException {
         WeatherResponseDto weatherData = weatherClientService.getWeatherData(city);

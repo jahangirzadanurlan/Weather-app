@@ -1,11 +1,11 @@
 spring:
   application:
-    name: notification-service
+    name: weather-service
 
 server:
-  port: 8082
   servlet:
-    context-path: /mail
+    context-path: /weather
+  port: 8083
 
 eureka:
   client:
